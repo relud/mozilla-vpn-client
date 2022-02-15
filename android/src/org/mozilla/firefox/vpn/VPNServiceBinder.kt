@@ -31,6 +31,7 @@ class VPNServiceBinder(service: VPNService) : Binder() {
         const val resumeActivate = 7
         const val setNotificationText = 8
         const val setStrings = 9
+        const val reactivate =10
     }
 
     /**
@@ -76,6 +77,18 @@ class VPNServiceBinder(service: VPNService) : Binder() {
                 // Activate the current tunnel
                 try {
                     mResumeConfig?.let { this.mService.turnOn(it) }
+                } catch (e: Exception) {
+                    Log.e(tag, "An Error occurred while enabling the VPN: ${e.localizedMessage}")
+                }
+                return true
+            }
+            ACTIONS.reactivate -> {
+                // [data] is empty
+                // Activate the tunnel with the last config
+                try {
+                    val prefs = Prefs.get(this.mService)
+                    val lastConfString = prefs.getString("lastConf", "")
+                    this.mService.turnOn(JSONObject(lastConfString))
                 } catch (e: Exception) {
                     Log.e(tag, "An Error occurred while enabling the VPN: ${e.localizedMessage}")
                 }
