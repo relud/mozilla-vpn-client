@@ -189,6 +189,7 @@ void AndroidController::activate(const HopConnection& hop, const Device* device,
   args["allowedIPs"] = fullAllowedIPs;
   args["excludedApps"] = excludedApps;
   args["dns"] = hop.m_dnsServer.toString();
+  args["city"] = MozillaVPN::instance()->currentServer()->exitCityName();
 
   QJsonDocument doc(args);
   QAndroidParcel sendData;

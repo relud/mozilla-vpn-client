@@ -108,6 +108,7 @@ class VPNServiceBinder(service: VPNService) : Binder() {
                 val obj = JSONObject()
                 obj.put("connected", mService.isUp)
                 obj.put("time", mService.connectionTime)
+                obj.put("city", mService.cityname)
                 dispatchEvent(EVENTS.init, obj.toString())
                 return true
             }
