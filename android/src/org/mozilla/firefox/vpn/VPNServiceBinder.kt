@@ -16,6 +16,8 @@ class VPNServiceBinder(service: VPNService) : Binder() {
     private val mService = service
     private val tag = "VPNServiceBinder"
     private var mListener: IBinder? = null // TODO: This now might be more then one!
+
+    private val mListeners = ArrayList<IBinder>()
     private var mResumeConfig: JSONObject? = null
 
     /**
@@ -31,7 +33,7 @@ class VPNServiceBinder(service: VPNService) : Binder() {
         const val resumeActivate = 7
         const val setNotificationText = 8
         const val setStrings = 9
-        const val reactivate =10
+        const val reactivate = 10
     }
 
     /**
@@ -104,12 +106,13 @@ class VPNServiceBinder(service: VPNService) : Binder() {
             ACTIONS.registerEventListener -> {
                 // [data] contains the Binder that we need to dispatch the Events
                 val binder = data.readStrongBinder()
-                mListener = binder
+                mListeners.add(binder)
+                Log.i(tag, "Registered binder now: ${mListeners.size} Binders")
                 val obj = JSONObject()
                 obj.put("connected", mService.isUp)
                 obj.put("time", mService.connectionTime)
                 obj.put("city", mService.cityname)
-                dispatchEvent(EVENTS.init, obj.toString())
+                dispatchEvent(EVENTS.init, obj.toString(), binder)
                 return true
             }
 
@@ -155,20 +158,37 @@ class VPNServiceBinder(service: VPNService) : Binder() {
      * [code] the Event that happened - see [EVENTS]
      * To register an Eventhandler use [onTransact] with
      * [ACTIONS.registerEventListener]
+     * When [targetBinder] is Provided, it will only dispatch
+     * the event to it.
      */
-    fun dispatchEvent(code: Int, payload: String?) {
-        try {
-            mListener?.let {
-                if (it.isBinderAlive) {
-                    val data = Parcel.obtain()
-                    data.writeByteArray(payload?.toByteArray(charset("UTF-8")))
-                    it.transact(code, data, Parcel.obtain(), 0)
-                }
+    fun dispatchEvent(code: Int, payload: String?, targetBinder: IBinder? = null) {
+        targetBinder?.let {
+            try {
+                val data = Parcel.obtain()
+                data.writeByteArray(payload?.toByteArray(charset("UTF-8")))
+                it.transact(code, data, Parcel.obtain(), 0)
+            } catch (e: DeadObjectException) {
             }
-        } catch (e: DeadObjectException) {
-            // If the QT Process is killed (not just inactive)
-            // we cant access isBinderAlive, so nothing to do here.
+            return
         }
+        val deadBinders = ArrayList<IBinder>()
+        mListeners.forEach {
+            if (it.isBinderAlive) {
+                val data = Parcel.obtain()
+                data.writeByteArray(payload?.toByteArray(charset("UTF-8")))
+                try {
+                    it.transact(code, data, Parcel.obtain(), 0)
+                } catch (e: DeadObjectException) {
+                    // If the QT Process is killed (not just inactive)
+                    // we cant access isBinderAlive, so nothing to do here.
+                    deadBinders.add(it)
+                }
+            } else {
+                deadBinders.add(it)
+            }
+        }
+        mListeners.removeAll(deadBinders)
+        Log.i(tag, "Removed ${deadBinders.size} dead Binders")
     }
 
     /**
