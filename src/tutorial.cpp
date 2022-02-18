@@ -38,6 +38,8 @@ Tutorial::Tutorial(QObject* parent) : ItemPicker(parent) {
 Tutorial::~Tutorial() { MVPN_COUNT_DTOR(Tutorial); }
 
 void Tutorial::play(const QString& fileName) {
+  logger.debug() << "Loading tutorial" << fileName;
+
   if (!m_steps.isEmpty()) {
     m_steps.clear();
     emit playingChanged();
@@ -45,6 +47,7 @@ void Tutorial::play(const QString& fileName) {
 
   QFile file(fileName);
   if (!file.open(QIODevice::ReadOnly)) {
+    logger.debug() << "Unable to open the file";
     emit playingChanged();
     return;
   }

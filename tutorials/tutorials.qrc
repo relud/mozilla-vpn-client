@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/tutorials">
+        <file>demo.t</file>
+    </qresource>
+</RCC>

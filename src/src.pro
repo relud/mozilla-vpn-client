@@ -954,6 +954,7 @@ else:wasm {
             platforms/wasm/wasmauthenticationlistener.cpp \
             platforms/wasm/wasmnetworkrequest.cpp \
             platforms/wasm/wasmnetworkwatcher.cpp \
+            platforms/wasm/wasmtutorialstarter.cpp \
             platforms/wasm/wasmwindowcontroller.cpp \
             systemtraynotificationhandler.cpp
 
@@ -962,6 +963,7 @@ else:wasm {
             platforms/macos/macosmenubar.h \
             platforms/wasm/wasmauthenticationlistener.h \
             platforms/wasm/wasmnetworkwatcher.h \
+            platforms/wasm/wasmtutorialstarter.h \
             platforms/wasm/wasmwindowcontroller.h \
             systemtraynotificationhandler.h
 
@@ -975,6 +977,7 @@ else {
 }
 
 RESOURCES += $$PWD/../translations/servers.qrc
+RESOURCES += $$PWD/../tutorials/tutorials.qrc
 
 exists($$PWD/../translations/generated/l18nstrings.h) {
     SOURCES += $$PWD/../translations/generated/l18nstrings_p.cpp

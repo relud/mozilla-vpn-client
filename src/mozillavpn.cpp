@@ -60,6 +60,10 @@
 #  include "platforms/android/androidutils.h"
 #endif
 
+#ifdef MVPN_WASM
+#  include "platforms/wasm/wasmtutorialstarter.h"
+#endif
+
 #ifdef MVPN_ADJUST
 #  include "adjust/adjusthandler.h"
 #endif
@@ -255,6 +259,10 @@ void MozillaVPN::initialize() {
 
   m_private->m_captivePortalDetection.initialize();
   m_private->m_networkWatcher.initialize();
+
+#ifdef MVPN_WASM
+  WasmTutorialStarter::initialize();
+#endif
 
   if (!settingsHolder->hasToken()) {
     return;
