@@ -71,10 +71,13 @@ option(BUILD_TESTING "Build the testing tree." OFF)
 include(CTest)
 add_custom_target(build_tests)
 set_target_properties(build_tests PROPERTIES EXCLUDE_FROM_ALL $<NOT:$<BOOL:${BUILD_TESTING}>>)
-add_subdirectory(tests/auth)
-add_subdirectory(tests/nativemessaging)
-add_subdirectory(tests/unit)
-add_subdirectory(tests/qml)
+
+if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
+    add_subdirectory(tests/auth)
+    add_subdirectory(tests/nativemessaging)
+    add_subdirectory(tests/unit)
+    add_subdirectory(tests/qml)
+endif()
 
 # Web Extension build targets
 if(NOT CMAKE_CROSSCOMPILING)

@@ -15,18 +15,25 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets Gui Test)
 find_package(Qt6 REQUIRED COMPONENTS Qml Quick)
-find_package(Qt6 REQUIRED COMPONENTS NetworkAuth)
 find_package(Qt6 REQUIRED COMPONENTS WebSockets)
 
 qt_add_executable(mozillavpn MANUAL_FINALIZATION)
 
 target_link_libraries(mozillavpn PRIVATE
-    Qt6::NetworkAuth
     Qt6::Quick
     Qt6::Test
     Qt6::WebSockets
     Qt6::Widgets
 )
+
+if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
+    find_package(Qt6 REQUIRED COMPONENTS NetworkAuth)
+    target_link_libraries(mozillavpn PRIVATE
+        Qt6::NetworkAuth
+    )
+    add_subdirectory(crashreporter)
+    target_link_libraries(mozillavpn PRIVATE crashreporter)
+endif()
 
 target_link_libraries(mozillavpn PRIVATE glean lottie nebula translations)
 
@@ -44,13 +51,12 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Android")
     set(MVPN_PLATFORM_NAME "android")
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "iOS")
     set(MVPN_PLATFORM_NAME "ios")
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
+    set(MVPN_PLATFORM_NAME "wasm")
 endif()
 
 add_compile_definitions("$<$<CONFIG:Debug>:MVPN_DEBUG>")
 add_compile_definitions("MVPN_$<UPPER_CASE:${MVPN_PLATFORM_NAME}>")
 include(cmake/${MVPN_PLATFORM_NAME}.cmake)
-
-add_subdirectory(crashreporter)
-target_link_libraries(mozillavpn PRIVATE crashreporter)
 
 qt_finalize_target(mozillavpn)

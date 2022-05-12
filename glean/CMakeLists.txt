@@ -4,8 +4,14 @@
 
 add_library(glean STATIC)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Qml Sql)
-target_link_libraries(glean PRIVATE Qt6::Core Qt6::Qml Qt6::Sql)
+find_package(Qt6 REQUIRED COMPONENTS Core Qml)
+target_link_libraries(glean PRIVATE Qt6::Core Qt6::Qml)
+
+if(NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
+    find_package(Qt6 REQUIRED COMPONENTS Sql)
+    target_link_libraries(glean PRIVATE Qt6::Sql)
+endif()
+
 target_include_directories(glean PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(glean PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 

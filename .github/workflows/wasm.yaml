@@ -62,7 +62,13 @@ jobs:
         shell: bash
         run: |
           export PATH=/opt/$QTVERSION/wasm_32/bin:/opt/$QTVERSION/gcc_64/bin:$PATH
-          ./scripts/wasm/compile.sh
+          mkdir build
+          /opt/$QTVERSION/wasm_32/bin/qt-cmake -S . -B build -DQT_HOST_PATH=/opt/$QTVERSION/gcc_64/bin -DQT_HOST_PATH_CMAKE_DIR=/opt/$QTVERSION/gcc_64/lib/cmake
+          cmake -B build
+          mv $(pwd)/src/mozillavpn.wasm wasm
+          mv $(pwd)/src/mozillavpn.js wasm
+          mv $(pwd)/src/qtloader.js wasm
+          cp -r tools/logviewer wasm
 
       - name: Uploading
         uses: actions/upload-artifact@v1

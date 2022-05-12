@@ -2,27 +2,30 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-#include "networkrequest.h"
-#include "captiveportal/captiveportal.h"
-#include "constants.h"
-#include "hawkauth.h"
-#include "leakdetector.h"
-#include "logger.h"
-#include "mozillavpn.h"
-#include "networkmanager.h"
-#include "settingsholder.h"
-#include "task.h"
+// Wasm has its own networkrequest implementation
+#ifndef MVPN_WASM
 
-#include <QDirIterator>
-#include <QHostAddress>
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QJsonObject>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QRegularExpression>
-#include <QUrl>
+#  include "networkrequest.h"
+#  include "captiveportal/captiveportal.h"
+#  include "constants.h"
+#  include "hawkauth.h"
+#  include "leakdetector.h"
+#  include "logger.h"
+#  include "mozillavpn.h"
+#  include "networkmanager.h"
+#  include "settingsholder.h"
+#  include "task.h"
+
+#  include <QDirIterator>
+#  include <QHostAddress>
+#  include <QJsonDocument>
+#  include <QJsonArray>
+#  include <QJsonObject>
+#  include <QNetworkAccessManager>
+#  include <QNetworkReply>
+#  include <QNetworkRequest>
+#  include <QRegularExpression>
+#  include <QUrl>
 
 // Timeout for the network requests.
 constexpr uint32_t REQUEST_TIMEOUT_MSEC = 15000;
@@ -1130,3 +1133,5 @@ void NetworkRequest::enableSSLIntervention() {
   conf.addCaCertificates(s_intervention_certs);
   m_request.setSslConfiguration(conf);
 }
+
+#endif  // MVPN_WASM
