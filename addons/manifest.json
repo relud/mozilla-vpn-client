@@ -1,0 +1,29 @@
+{
+  "api_version": "0.1",
+  "addons": [
+    {
+      "id": "guide_04_connecting_external_devices",
+      "sha256": "778c1d7b051d5bb4620cef434249a1ff3a8819148ffbec7266fec344fc6e59dd"
+    },
+    {
+      "id": "guide_03_adding_and_removing_devices",
+      "sha256": "ce90a31feddc3a4de0a258abe05cf6128ced6af202608b0c98f19772ead51c68"
+    },
+    {
+      "id": "guide_02_is_my_vpn_working_correctly",
+      "sha256": "6bf74df44f5861f10e79823098c59dc6cceee72e5760d1cd1970e4cf54bc7a05"
+    },
+    {
+      "id": "guide_01_how_to_vpn",
+      "sha256": "364b8e002aadc90b6adbe290f8835f2e8b219be7a641da680f19fc802c96f5b3"
+    },
+    {
+      "id": "tutorial_02_connect_on_startup",
+      "sha256": "f2495ffecf59dcd10af60f6811db3c6453a3a56f1107c504a0c3d39f577a60f2"
+    },
+    {
+      "id": "tutorial_01_get_started",
+      "sha256": "e0e78e60f9f894264037e2a2fb2a3e15291329ef883b6b3fc848aa7df9d1bf00"
+    }
+  ]
+}
