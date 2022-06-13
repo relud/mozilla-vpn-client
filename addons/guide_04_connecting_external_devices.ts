@@ -31,9 +31,9 @@
       <translation type="unfinished"/>
       <extracomment>Bullet ordered list item in a guide block</extracomment>
     </message>
-    <message id="guide.connecting_external_devices.block.c_2.l_3">
+    <message id="guide.connecting_external_devices.block.c_2.l_4">
       <location filename="addon.qml"/>
-      <source>Print or fax your documents as normal Desktop computers / laptops / mobile phones</source>
+      <source>Print or fax your documents as normal</source>
       <translation type="unfinished"/>
       <extracomment>Bullet ordered list item in a guide block</extracomment>
     </message>
