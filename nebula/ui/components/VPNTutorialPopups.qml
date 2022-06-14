@@ -242,7 +242,7 @@ Item {
 
     function openTipsAndTricks() {
         tutorialPopup.close();
-        VPN.settingsNeeded();
+        VPN.settingsNeeded(true /* calledFromTemplate */);
         const settingsViewInMainStack = mainStackView.find((view) => { return view.objectName === "settings" });
         settingsViewInMainStack._openTipsAndTricks();
     }

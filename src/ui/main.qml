@@ -316,8 +316,8 @@ Window {
             mainStackView.push("qrc:/ui/views/ViewContactUs.qml", StackView.Immediate);
         }
 
-        function onSettingsNeeded() {
-            if (tutorialUI.visible) {
+        function onSettingsNeeded(calledFromTemplate) {
+            if (tutorialUI.visible && !calledFromTemplate) {
                 return tutorialUI.openLeaveTutorialPopup(VPN.settingsNeeded);
             }
 

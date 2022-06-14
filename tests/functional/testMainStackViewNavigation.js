@@ -20,7 +20,7 @@ describe('mainStackView navigation', function() {
     await vpn.waitForElement('supportTicketScreen');
     await vpn.waitForElementProperty('supportTicketScreen', 'visible', 'true');
     await vpn.clickOnElement('supportTicketScreen');
-    await vpn.wait();
+    return await vpn.wait();
   }
 
   async function getMainStackViewDepth() {
@@ -69,7 +69,7 @@ describe('mainStackView navigation', function() {
        async () => {
          const mainStackDepth = await getMainStackViewDepth();
          await vpn.wait();
-         await vpn.openSettings();
+         await vpn.openSettings(true /* calledFromTemplate*/);
          await vpn.wait();
          await vpn.waitForElement('settingsBackButton');
          await vpn.waitForElementProperty(
@@ -90,7 +90,7 @@ describe('mainStackView navigation', function() {
          await vpn.waitForElement('deviceListBackButton');
          await vpn.waitForElementProperty(
              'deviceListBackButton', 'visible', 'true');
-         await vpn.openSettings();
+         await vpn.openSettings(true /* calledFromTemplate*/);
          await vpn.waitForElement('settingsBackButton');
          await vpn.waitForElementProperty(
              'settingsBackButton', 'visible', 'true');

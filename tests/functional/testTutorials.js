@@ -99,7 +99,7 @@ describe('Tutorials', function() {
         it('Opening settings from system tray during tutorial triggers "Leave tutorial?" popup',
            async () => {
              await vpn.wait();
-             await vpn.openSettings();
+             await vpn.openSettings(false /* calledFromTemplate */);
              await vpn.wait();
              assert(
                  (await vpn.getElementProperty(
@@ -109,7 +109,7 @@ describe('Tutorials', function() {
         it('Clicking secondary button opens clicked system tray option',
            async () => {
              await vpn.wait();
-             await vpn.openSettings();
+             await vpn.openSettings(true /* calledFromTemplate */);
              await vpn.wait();
 
              await vpn.waitForElementProperty(

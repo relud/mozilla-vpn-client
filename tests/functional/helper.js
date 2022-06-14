@@ -468,8 +468,10 @@ module.exports = {
     return json.value;
   },
 
-  async openSettings() {
-    const json = await this._writeCommand('open_settings');
+  async openSettings(calledFromTemplateBool) {
+    const calledFromTemplate = calledFromTemplateBool ? '1' : '0';
+    const json =
+        await this._writeCommand(`open_settings ${calledFromTemplate}`);
     assert(
         json.type === 'open_settings' && !('error' in json),
         `Command failed: ${json.error}`);

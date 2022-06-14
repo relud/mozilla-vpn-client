@@ -1380,11 +1380,11 @@ bool MozillaVPN::modelsInitialized() const {
   return true;
 }
 
-void MozillaVPN::requestSettings() {
+void MozillaVPN::requestSettings(bool calledFromTemplate) {
   logger.debug() << "Settings required";
 
   QmlEngineHolder::instance()->showWindow();
-  emit settingsNeeded();
+  emit settingsNeeded(calledFromTemplate);
 }
 
 void MozillaVPN::requestAbout() {

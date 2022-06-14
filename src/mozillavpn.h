@@ -388,7 +388,7 @@ class MozillaVPN final : public QObject {
   QList<Server> filterServerList(const QList<Server>& servers) const;
 
  public slots:
-  void requestSettings();
+  void requestSettings(bool calledFromTemplate);
   void requestAbout();
   void requestViewLogs();
   void requestContactUs();
@@ -399,7 +399,7 @@ class MozillaVPN final : public QObject {
   void updateRecommendedChanged();
   void userStateChanged();
   void deviceRemoving(const QString& publicKey);
-  void settingsNeeded();
+  void settingsNeeded(bool calledFromTemplate);
   void aboutNeeded();
   void viewLogsNeeded();
   void contactUsNeeded();
