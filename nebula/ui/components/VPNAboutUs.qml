@@ -24,8 +24,8 @@ Item {
         ListElement {
             linkId: "tos"
 
-            //% "Terms of service"
-            linkTitle: qsTrId("vpn.aboutUs.tos2")
+            //% "%n apple(s)"
+            linkTitle: qsTrId("vpn.aboutUs.appleNumber", 2)
             openUrl: VPN.LinkTermsOfService
             openView: ""
         }
@@ -33,8 +33,7 @@ Item {
         ListElement {
             linkId: "privacy"
 
-            //% "Privacy notice"
-            linkTitle: qsTrId("vpn.aboutUs.privacyNotice2")
+            linkTitle: qsTrId("vpn.aboutUs.appleNumber", 1)
             openUrl: VPN.LinkPrivacyNotice
             openView: ""
         }
@@ -64,7 +63,7 @@ Item {
             id: mozillaLabel
 
             width: aboutUsCopy.width
-            text: qsTrId("vpn.main.productName")
+            text: qsTrId("vpn.aboutUs.appleNumber")
         }
 
         VPNTextBlock {
