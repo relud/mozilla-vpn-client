@@ -3,27 +3,27 @@
   "addons": [
     {
       "id": "guide_04_connecting_external_devices",
-      "sha256": "a8395fe3268c960941b81eee399f50e14c75424884ad122239e3d81888ea81b9"
+      "sha256": "ca53abc481aee72b26d33a6bb9e34ca660023e4b4842305fc74007dfdb8acdff"
     },
     {
       "id": "guide_02_is_my_vpn_working_correctly",
-      "sha256": "04d799a65de4f03175dc2e72862a25af0f2887c9ffac6c0c092fb4e463a02713"
+      "sha256": "76390f2690b694b11bb1245fb9193c8f4f38a1a41414bb7757331b3b9536284a"
     },
     {
       "id": "guide_01_how_to_vpn",
-      "sha256": "d32d2e34d9b36370f2e573f0354764cdc974c65990324d5bdfb9554e678c8e6c"
+      "sha256": "3320c9659ea7921247f1336425b2b5b529db133841c4fa9e1c10d1c35d9cd1ad"
     },
     {
       "id": "tutorial_01_get_started",
-      "sha256": "ccdcbeb56131d74bf1f0b6099079982161f741860a068b2d9f8eead09ee45d01"
+      "sha256": "8547de1bafb8663ebb7a964a0b93b4df767ccc3fbda57cc72d06115f7e85810d"
     },
     {
       "id": "tutorial_02_connect_on_startup",
-      "sha256": "c9b27150d37ca2bc30b30d32d24daac043aef3bd6226a60b5ffe0fe00127fa03"
+      "sha256": "02c73407a17ed00ffe4d9388f5fd49f0d3cc659f86dba570618477a637ac79d9"
     },
     {
       "id": "guide_03_adding_and_removing_devices",
-      "sha256": "728273b28255b06418ecef164af7468cca6b46c3a22af32d147ac09038b4f598"
+      "sha256": "b21b36eb15dd32f3b04acbf26328199e5075e21fdc99a169fd92f070a7d9646d"
     }
   ]
 }
