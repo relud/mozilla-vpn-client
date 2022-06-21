@@ -75,8 +75,6 @@ HEADERS += \
     ../../src/models/feature.h \
     ../../src/models/featuremodel.h \
     ../../src/models/feedbackcategorymodel.h \
-    ../../src/models/guide.h \
-    ../../src/models/guidemodel.h \
     ../../src/models/helpmodel.h \
     ../../src/models/keys.h \
     ../../src/models/licensemodel.h \
@@ -140,7 +138,6 @@ HEADERS += \
     testandroidmigration.h \
     testcommandlineparser.h \
     testfeature.h \
-    testguide.h \
     testipaddress.h \
     testipaddresslookup.h \
     testipfinder.h \
@@ -195,8 +192,6 @@ SOURCES += \
     ../../src/models/feature.cpp \
     ../../src/models/featuremodel.cpp \
     ../../src/models/feedbackcategorymodel.cpp \
-    ../../src/models/guide.cpp \
-    ../../src/models/guidemodel.cpp \
     ../../src/models/helpmodel.cpp \
     ../../src/models/keys.cpp \
     ../../src/models/licensemodel.cpp \
@@ -259,7 +254,6 @@ SOURCES += \
     testandroidmigration.cpp \
     testcommandlineparser.cpp \
     testfeature.cpp \
-    testguide.cpp \
     testipaddress.cpp \
     testipaddresslookup.cpp \
     testipfinder.cpp \
