@@ -35,6 +35,8 @@ SOURCES += \
         commands/commandservers.cpp \
         commands/commandstatus.cpp \
         commands/commandui.cpp \
+        composer.cpp \
+        composerblock.cpp \
         connectionbenchmark/benchmarktask.cpp \
         connectionbenchmark/benchmarktaskdownload.cpp \
         connectionbenchmark/benchmarktaskping.cpp \
@@ -77,7 +79,6 @@ SOURCES += \
         models/featuremodel.cpp \
         models/feedbackcategorymodel.cpp \
         models/guide.cpp \
-        models/guideblock.cpp \
         models/guidemodel.cpp \
         models/helpmodel.cpp \
         models/keys.cpp \
@@ -188,6 +189,8 @@ HEADERS += \
         commands/commandservers.h \
         commands/commandstatus.h \
         commands/commandui.h \
+        composer.h \
+        composerblock.h \
         connectionbenchmark/benchmarktask.h \
         connectionbenchmark/benchmarktaskdownload.h \
         connectionbenchmark/benchmarktaskping.h \
@@ -227,7 +230,6 @@ HEADERS += \
         models/featuremodel.h \
         models/feedbackcategorymodel.h \
         models/guide.h \
-        models/guideblock.h \
         models/guidemodel.h \
         models/helpmodel.h \
         models/keys.h \
@@ -315,3 +317,7 @@ RESOURCES += ui/resources.qrc
 RESOURCES += ui/license.qrc
 RESOURCES += ui/ui.qrc
 RESOURCES += resources/certs/certs.qrc
+
+CONFIG += qmltypes
+QML_IMPORT_NAME = Mozilla.VPN.qmlcomponents
+QML_IMPORT_MAJOR_VERSION = 1.0
